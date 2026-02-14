@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Инструкция по настройке VPN</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #4A90E2; padding-bottom: 10px; }
+        h2 { color: #4A90E2; margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        h3 { color: #2c3e50; }
+        
+        .subscription-list { list-style: none; padding: 0; }
+        .subscription-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        .link-text {
+            font-size: 0.9em;
+            color: #666;
+            word-break: break-all;
+            flex-grow: 1;
+        }
+        .copy-btn {
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover { background-color: #357ABD; }
+        .copy-btn.success { background-color: #28a745; }
+
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            color: #d63384;
+        }
+        .instruction-step {
+            background: #fff;
+            border-left: 4px solid #4A90E2;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        a { color: #4A90E2; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Инструкция</h1>
+
+    <h2>Список подписок:</h2>
+    <div class="subscription-list">
+        <div class="subscription-item">
+            <div><strong>1. BLACK SS, HYSTERIA2, VMESS, TROJAN:</strong><br><span class="link-text" id="link1">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link1', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>2. BLACK VLESS MOBILE:</strong><br><span class="link-text" id="link2">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS_mobile.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link2', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>3. BLACK VLESS:</strong><br><span class="link-text" id="link3">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link3', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>4. WHITE TOP 150:</strong><br><span class="link-text" id="link4">https://raw.githubusercontent.com/GoldCaviar/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link4', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>5. WHITE TOP 150 2:</strong><br><span class="link-text" id="link5">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link5', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>6. WHITE CIDR ALL:</strong><br><span class="link-text" id="link6">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link6', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>7. WHITE CIDR CHECKED:</strong><br><span class="link-text" id="link7">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link7', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>8. WHITE SNI ALL:</strong><br><span class="link-text" id="link8">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link8', this)">Копировать</button>
+        </div>
+    </div>
+
+    <h2>Пояснение:</h2>
+    <ol>
+        <li>Чёрные списки, различные протоколы</li>
+        <li>Чёрные списки, VLESS для мобильных сетей(LTE)</li>
+        <li>Чёрные списки, VLESS</li>
+        <li>Белые списки, подборка 150 лучших</li>
+        <li>Белые списки, подборка 150 лучших №2</li>
+        <li>Белые списки, большой список универсальных решений</li>
+        <li>Белые списки, только на провайдерах Beeline, Yandex, CDNVIDEO, VK, тоже универсальное решение</li>
+        <li>Белые списки, для обхода лёгких ограничений</li>
+    </ol>
+
+    <h2>Приложение:</h2>
+    <ul>
+        <li>1. IOS - <a href="https://apps.apple.com/us/app/streisand/id6450534064"><code>Streisand</code></a>, <a href="https://apps.apple.com/us/app/karing/id6472431552"><code>Karing</code></a></li>
+        <li>2. Windows - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
+        <li>3. MacOS - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
+        <li>4. GNU/Linux - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
+        <li>5. Android - <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"><code>NekoBox</code></a>, <a href="https://github.com/2dust/v2rayNG/releases"><code>v2rayNG</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
+    </ul>
+
+    <h2>Добавление подписки:</h2>
+    <p>Сначала нужно скопировать ссылку по которой будет добавлять подписка. Приоритетней всего будет 4 и 5. После этого идёт добавление в клиент</p>
+
+    <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу подписки. Настройки > Основные настройки > Подписка > Включить интервал</div>
+    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Примечание можно указать любое > Под кнопкой подключения выбираем какой нибудь сервер</div>
+    <div class="instruction-step"><code>v2rayN</code>: Серверы > Имопрт массива URL из буфера обмена > Переходим в подписку > Группа подписки > Обновить подписку без прокси</div>
+    <div class="instruction-step"><code>NekoBox</code>: Три полоски > Группы > Плюсик > Имя любое > Тип группы Подписка > Ссылка для подписки всятавляем ссылку > Автоматическое обновление > Задержка автоматического обновления 30</div>
+    <div class="instruction-step"><code>v2rayNG</code>: Три полоски > Группы > Плюсик > Названиие любое > URL вствляем ссылку</div>
+    <div class="instruction-step"><code>Streisand</code>: Плюсик > Добавить вручную > Тип Subscription > Название любое > URL вставляем ссылку > Автообновление 30 минут</div>
+    <div class="instruction-step"><code>singbox-launcher</code>: Скачиваем Sing-box > Скачиваем wintun.dll > Скачиваем Config template > Жмём Wizard > в Subscription URL вставляем ссылку > Жмём Next > Жмём Next > Жмём Save > Жмём Start > Идём во вкладку Server > Выбираем любой сервер</div>
+
+    <h3>Благодарность:</h3>
+    <p><a href="https://github.com/igareck">igareck</a></p>
+</div>
+
+<script>
+function copyLink(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'Скопировано!';
+        btn.classList.add('success');
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.classList.remove('success');
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>
