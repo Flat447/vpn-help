@@ -17,6 +17,7 @@
             --yellow: #fabd2f;
             --orange: #fe8019;
             --red: #fb4934;
+            --purple: #d3869b;
         }
 
         body {
@@ -126,39 +127,31 @@
             padding-top: 20px;
             border-top: 1px solid var(--bg2);
         }
-        .footer-links {
+        .social-links {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
         }
-        .tg-channel {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .btn-link {
+            display: inline-block;
             padding: 10px 20px;
             background: var(--bg2);
             border-radius: 30px;
             color: var(--fg0);
             font-weight: bold;
-            transition: transform 0.2s, background 0.2s;
+            transition: all 0.2s;
+            text-decoration: none;
         }
-        .tg-channel:hover {
+        .btn-link:hover {
             transform: scale(1.05);
-            background: var(--blue);
             color: var(--bg0);
             text-decoration: none;
         }
-        .github-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--fg1);
-            font-size: 0.9em;
-        }
-        .github-link svg {
-            fill: var(--fg1);
-        }
+        .tg-color:hover { background: var(--blue); }
+        .gh-color:hover { background: var(--purple); }
+
     </style>
 </head>
 <body>
@@ -168,16 +161,17 @@
 
     <div class="theory-section">
         <h2>Как работает VPN</h2>
+        
         <blockquote>
-            <strong>VPN (Virtual Private Network)</strong> — Виртуальная Приватная Сеть. Это отдельное зашифрованное соединение, через которое идет весь ваш трафик и все ваши запросы.
+            <strong>VPN (Virtual Private Network)</strong> — Виртуальная Приватная Сеть. По сути это отдельное зашифрованное соединение через который идёт весь ваш трафик и все ваши запросы.
         </blockquote>
-        <p><strong>Зачем это нужно?</strong></p>
-        <p>Без VPN провайдер может видеть, какие сайты вы посещаете, и анализировать трафик. VPN создает зашифрованный «туннель». Провайдер видит факт подключения, но не может прочитать данные внутри. Запрос расшифровывается только на VPN-сервере и отправляется дальше.</p>
-        <p style="color: var(--red);"><em>Внимание: VPN не защищает данные на сайтах без протокола HTTPS!</em></p>
+        <p><strong>Суть процесса:</strong></p>
+        <p>Если вы сидите без VPN, то ваш провайдер может спокойно читать куда вы заходите и анализировать ваш трафик. Когда мы включаем VPN, мы создаём отдельный зашифрованный «туннель», который провайдер не может прочитать. Запрос расшифровывается только на сервере и идет по назначению.</p>
+        <p style="color: var(--red);"><em>Важно: остерегайтесь сайтов, не поддерживающих HTTPS! Без него данные могут быть украдены даже при использовании VPN.</em></p>
     </div>
 
-    <h2>Практическая часть</h2>
-    <p>Используется репозиторий <a href="https://github.com/igareck/vpn-configs-for-russia" target="_blank">vpn-configs-for-russia</a>.</p>
+    <h2>Практическая настройка</h2>
+    <p>Мы воспользуемся репозиторием GitHub <a href="https://github.com/igareck/vpn-configs-for-russia">vpn-configs-for-russia</a>.</p>
 
     <h3>1. Список подписок:</h3>
     <div class="subscription-list">
@@ -201,25 +195,56 @@
             <div><strong>5. WHITE TOP 150 2:</strong><br><span class="link-text" id="link5">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt</span></div>
             <button class="copy-btn" onclick="copyLink('link5', this)">Копировать</button>
         </div>
+        <div class="subscription-item">
+            <div><strong>6. WHITE CIDR ALL:</strong><br><span class="link-text" id="link6">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link6', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>7. WHITE CIDR CHECKED:</strong><br><span class="link-text" id="link7">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link7', this)">Копировать</button>
+        </div>
+        <div class="subscription-item">
+            <div><strong>8. WHITE SNI ALL:</strong><br><span class="link-text" id="link8">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt</span></div>
+            <button class="copy-btn" onclick="copyLink('link8', this)">Копировать</button>
+        </div>
     </div>
 
-    <h3>2. Добавление подписки:</h3>
-    <p>Рекомендуется использовать ссылки <strong>№4</strong> и <strong>№5</strong>.</p>
-    <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу</div>
-    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Выбрать сервер под кнопкой подключения</div>
-    <div class="instruction-step"><code>v2rayN</code>: Серверы > Импорт массива URL > Группа подписки > Обновить без прокси</div>
-    <div class="instruction-step"><code>NekoBox/v2rayNG</code>: Группы > Плюс (+) > Тип: Подписка > Вставить ссылку</div>
+    <h3>2. Пояснение за подписки:</h3>
+    <ol>
+        <li>Чёрные списки, различные протоколы.</li>
+        <li>Чёрные списки, VLESS для мобильных сетей (LTE).</li>
+        <li>Чёрные списки, VLESS.</li>
+        <li>Белые списки, подборка 150 лучших.</li>
+        <li>Белые списки, подборка 150 лучших №2.</li>
+        <li>Белые списки, большой список универсальных решений.</li>
+        <li>Белые списки для Beeline, Yandex, CDNVIDEO, VK.</li>
+        <li>Белые списки для обхода лёгких ограничений.</li>
+    </ol>
 
-    <h3>3. Тонкая настройка (Глоссарий):</h3>
+    <h3>3. Приложения:</h3>
+    <ul>
+        <li><strong>iOS:</strong> <a href="https://apps.apple.com/us/app/streisand/id6450534064">Streisand</a>, <a href="https://apps.apple.com/us/app/karing/id6472431552">Karing</a></li>
+        <li><strong>Windows/MacOS:</strong> <a href="https://github.com/2dust/v2rayN/releases">v2rayN</a>, <a href="https://github.com/throneproj/Throne/releases">Throne</a>, <a href="https://github.com/KaringX/karing/releases">Karing</a></li>
+        <li><strong>Android:</strong> <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases">NekoBox</a>, <a href="https://github.com/2dust/v2rayNG/releases">v2rayNG</a></li>
+    </ul>
+
+    <h3>4. Добавление подписок:</h3>
+    <p>Приоритетнее всего использовать ссылки <strong>№4</strong> и <strong>№5</strong>.</p>
+    <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу подписки</div>
+    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Выбрать сервер под кнопкой подключения</div>
+    <div class="instruction-step"><code>v2rayN</code>: Серверы > Импорт массива URL из буфера обмена > Группа подписки > Обновить без прокси</div>
+    <div class="instruction-step"><code>NekoBox</code>: Группы > Плюс (+) > Тип: Подписка > Вставить ссылку</div>
+
+    <h3>5. Глоссарий и тонкая настройка:</h3>
     <div class="theory-section">
         <div class="term-box">
-            <strong>DoH (DNS over HTTPS) / DoT (DNS over TLS):</strong> Шифруют ваши DNS-запросы, чтобы провайдер не видел, какие домены вы посещаете.
+            <strong>DoH (DNS over HTTPS) / DoT (DNS over TLS):</strong> Технологии шифрования DNS-запросов, предотвращающие слежку провайдера за тем, какие домены вы посещаете.
         </div>
         <div class="term-box">
-            <strong>Stack (Реализация TUN):</strong> Программный слой для обработки трафика. <strong>gVisor</strong> — стабильный стек от Google для работы виртуального интерфейса.
+            <strong>Stack (TUN):</strong> Программная реализация сетевого интерфейса. <strong>gVisor</strong> — это современный стек от Google, обеспечивающий высокую стабильность и безопасность.
         </div>
         <div class="term-box">
-            <strong>MTU (Maximum Transmission Unit):</strong> Максимальный размер пакета. Для протокола <strong>Hysteria2</strong> критично значение <strong>1500</strong>.
+            <strong>MTU (Maximum Transmission Unit):</strong> Максимальный размер пакета данных. Значение <strong>1500</strong> критически важно для корректной работы протокола Hysteria2.
         </div>
     </div>
 
@@ -235,14 +260,10 @@
     </div>
 
     <div class="footer">
-        <div class="footer-links">
-            <a href="https://github.com/igareck" target="_blank" class="github-link">
-                <svg height="20" width="20" viewBox="0 0 16 16">
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                </svg>
-                Благодарность: igareck
-            </a>
-            <a href="https://t.me/flat447" class="tg-channel" target="_blank">Мой Telegram канал</a>
+        <p>Благодарность: <a href="https://github.com/igareck">igareck</a></p>
+        <div class="social-links">
+            <a href="https://t.me/flat447" class="btn-link tg-color" target="_blank">✈ Telegram</a>
+            <a href="https://github.com/Flat447" class="btn-link gh-color" target="_blank">GitHub</a>
         </div>
     </div>
 </div>
