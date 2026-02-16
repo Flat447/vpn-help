@@ -37,8 +37,16 @@
         }
         h1 { color: var(--fg0); border-bottom: 3px solid var(--blue); padding-bottom: 10px; }
         h2 { color: var(--blue); margin-top: 30px; border-bottom: 1px solid var(--bg2); padding-bottom: 5px; }
-        h3 { color: var(--yellow); }
+        h3 { color: var(--yellow); margin-top: 20px; }
         
+        .theory-section {
+            background: var(--bg1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--blue);
+        }
+
         .subscription-list { list-style: none; padding: 0; }
         .subscription-item {
             background: var(--bg1);
@@ -93,19 +101,85 @@
             margin-bottom: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        blockquote {
+            border-left: 4px solid var(--gray);
+            margin: 10px 0;
+            padding-left: 15px;
+            font-style: italic;
+            color: var(--gray);
+        }
         a { color: var(--blue); text-decoration: none; }
         a:hover { color: var(--yellow); text-decoration: underline; }
         
         strong { color: var(--fg0); }
         ol li, ul li { margin-bottom: 8px; }
+
+        .term-box {
+            border-top: 1px dashed var(--bg2);
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg2);
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .tg-channel {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg2);
+            border-radius: 30px;
+            color: var(--fg0);
+            font-weight: bold;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .tg-channel:hover {
+            transform: scale(1.05);
+            background: var(--blue);
+            color: var(--bg0);
+            text-decoration: none;
+        }
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--fg1);
+            font-size: 0.9em;
+        }
+        .github-link svg {
+            fill: var(--fg1);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Инструкция</h1>
+    <h1>Настройка VPN</h1>
 
-    <h2>Список подписок:</h2>
+    <div class="theory-section">
+        <h2>Как работает VPN</h2>
+        <blockquote>
+            <strong>VPN (Virtual Private Network)</strong> — Виртуальная Приватная Сеть. Это отдельное зашифрованное соединение, через которое идет весь ваш трафик и все ваши запросы.
+        </blockquote>
+        <p><strong>Зачем это нужно?</strong></p>
+        <p>Без VPN провайдер может видеть, какие сайты вы посещаете, и анализировать трафик. VPN создает зашифрованный «туннель». Провайдер видит факт подключения, но не может прочитать данные внутри. Запрос расшифровывается только на VPN-сервере и отправляется дальше.</p>
+        <p style="color: var(--red);"><em>Внимание: VPN не защищает данные на сайтах без протокола HTTPS!</em></p>
+    </div>
+
+    <h2>Практическая часть</h2>
+    <p>Используется репозиторий <a href="https://github.com/igareck/vpn-configs-for-russia" target="_blank">vpn-configs-for-russia</a>.</p>
+
+    <h3>1. Список подписок:</h3>
     <div class="subscription-list">
         <div class="subscription-item">
             <div><strong>1. BLACK SS, HYSTERIA2, VMESS, TROJAN:</strong><br><span class="link-text" id="link1">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt</span></div>
@@ -127,54 +201,50 @@
             <div><strong>5. WHITE TOP 150 2:</strong><br><span class="link-text" id="link5">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt</span></div>
             <button class="copy-btn" onclick="copyLink('link5', this)">Копировать</button>
         </div>
-        <div class="subscription-item">
-            <div><strong>6. WHITE CIDR ALL:</strong><br><span class="link-text" id="link6">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt</span></div>
-            <button class="copy-btn" onclick="copyLink('link6', this)">Копировать</button>
+    </div>
+
+    <h3>2. Добавление подписки:</h3>
+    <p>Рекомендуется использовать ссылки <strong>№4</strong> и <strong>№5</strong>.</p>
+    <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу</div>
+    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Выбрать сервер под кнопкой подключения</div>
+    <div class="instruction-step"><code>v2rayN</code>: Серверы > Импорт массива URL > Группа подписки > Обновить без прокси</div>
+    <div class="instruction-step"><code>NekoBox/v2rayNG</code>: Группы > Плюс (+) > Тип: Подписка > Вставить ссылку</div>
+
+    <h3>3. Тонкая настройка (Глоссарий):</h3>
+    <div class="theory-section">
+        <div class="term-box">
+            <strong>DoH (DNS over HTTPS) / DoT (DNS over TLS):</strong> Шифруют ваши DNS-запросы, чтобы провайдер не видел, какие домены вы посещаете.
         </div>
-        <div class="subscription-item">
-            <div><strong>7. WHITE CIDR CHECKED:</strong><br><span class="link-text" id="link7">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt</span></div>
-            <button class="copy-btn" onclick="copyLink('link7', this)">Копировать</button>
+        <div class="term-box">
+            <strong>Stack (Реализация TUN):</strong> Программный слой для обработки трафика. <strong>gVisor</strong> — стабильный стек от Google для работы виртуального интерфейса.
         </div>
-        <div class="subscription-item">
-            <div><strong>8. WHITE SNI ALL:</strong><br><span class="link-text" id="link8">https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt</span></div>
-            <button class="copy-btn" onclick="copyLink('link8', this)">Копировать</button>
+        <div class="term-box">
+            <strong>MTU (Maximum Transmission Unit):</strong> Максимальный размер пакета. Для протокола <strong>Hysteria2</strong> критично значение <strong>1500</strong>.
         </div>
     </div>
 
-    <h2>Пояснение:</h2>
-    <ol>
-        <li>Чёрные списки, различные протоколы</li>
-        <li>Чёрные списки, VLESS для мобильных сетей(LTE)</li>
-        <li>Чёрные списки, VLESS</li>
-        <li>Белые списки, подборка 150 лучших</li>
-        <li>Белые списки, подборка 150 лучших №2</li>
-        <li>Белые списки, большой список универсальных решений</li>
-        <li>Белые списки, только на провайдерах Beeline, Yandex, CDNVIDEO, VK, тоже универсальное решение</li>
-        <li>Белые списки, для обхода лёгких ограничений</li>
-    </ol>
+    <div class="instruction-step">
+        <p><strong>Рекомендуемые параметры:</strong></p>
+        <ul>
+            <li>Удаленный DNS: <code>https://1.1.1.1/dns-query</code></li>
+            <li>Прямой DNS: <code>https://223.5.5.5/dns-query</code></li>
+            <li>Stack (TUN): <code>gVisor</code></li>
+            <li>MTU: <code>1500</code></li>
+            <li>Автообновление: каждые 2 часа</li>
+        </ul>
+    </div>
 
-    <h2>Приложение:</h2>
-    <ul>
-        <li>1. IOS - <a href="https://apps.apple.com/us/app/streisand/id6450534064"><code>Streisand</code></a>, <a href="https://apps.apple.com/us/app/karing/id6472431552"><code>Karing</code></a></li>
-        <li>2. Windows - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
-        <li>3. MacOS - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
-        <li>4. GNU/Linux - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
-        <li>5. Android - <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"><code>NekoBox</code></a>, <a href="https://github.com/2dust/v2rayNG/releases"><code>v2rayNG</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
-    </ul>
-
-    <h2>Добавление подписки:</h2>
-    <p>Сначала нужно скопировать ссылку по которой будет добавлять подписка. Приоритетней всего будет 4 и 5. После этого идёт добавление в клиент</p>
-
-    <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу подписки. Настройки > Основные настройки > Подписка > Включить интервал</div>
-    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Примечание можно указать любое > Под кнопкой подключения выбираем какой нибудь сервер</div>
-    <div class="instruction-step"><code>v2rayN</code>: Серверы > Имопрт массива URL из буфера обмена > Переходим в подписку > Группа подписки > Обновить подписку без прокси</div>
-    <div class="instruction-step"><code>NekoBox</code>: Три полоски > Группы > Плюсик > Имя любое > Тип группы Подписка > Ссылка для подписки всятавляем ссылку > Автоматическое обновление > Задержка автоматического обновления 30</div>
-    <div class="instruction-step"><code>v2rayNG</code>: Три полоски > Группы > Плюсик > Названиие любое > URL вствляем ссылку</div>
-    <div class="instruction-step"><code>Streisand</code>: Плюсик > Добавить вручную > Тип Subscription > Название любое > URL вставляем ссылку > Автообновление 30 минут</div>
-    <div class="instruction-step"><code>singbox-launcher</code>: Скачиваем Sing-box > Скачиваем wintun.dll > Скачиваем Config template > Жмём Wizard > в Subscription URL вставляем ссылку > Жмём Next > Жмём Next > Жмём Save > Жмём Start > Идём во вкладку Server > Выбираем любой сервер</div>
-
-    <h3>Благодарность:</h3>
-    <p><a href="https://github.com/igareck">igareck</a></p>
+    <div class="footer">
+        <div class="footer-links">
+            <a href="https://github.com/igareck" target="_blank" class="github-link">
+                <svg height="20" width="20" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                Благодарность: igareck
+            </a>
+            <a href="https://t.me/flat447" class="tg-channel" target="_blank">Мой Telegram канал</a>
+        </div>
+    </div>
 </div>
 
 <script>
