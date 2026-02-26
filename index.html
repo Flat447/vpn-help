@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="https://github.githubassets.com/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/refs/heads/main/icon.svg.svg">
     <title>Инструкция по настройке VPN</title>
     <style>
         :root {
@@ -191,9 +191,9 @@
     <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу подписки. Настройки > Основные настройки > Подписка > Включить интервал</div>
     <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Примечание можно указать любое > Под кнопкой подключения выбираем какой нибудь сервер</div>
     <div class="instruction-step"><code>v2rayN</code>: Серверы > Имопрт массива URL из буфера обмена > Переходим в подписку > Группа подписки > Обновить подписку без прокси</div>
-    <div class="instruction-step"><code>NekoBox</code>: Три полоски > Группы > Плюсик > Имя любое > Тип группы Подписка > Ссылка для подписки всятавляем ссылку > Автоматическое обновление > Задержка автоматического обновления 30</div>
+    <div class="instruction-step"><code>NekoBox</code>: Три полоски > Группы > Плюсик > Имя любое > Тип группы: Подписка > Ссылка для подписки всятавляем ссылку > Автоматическое обновление > Задержка автоматического обновления 30</div>
     <div class="instruction-step"><code>v2rayNG</code>: Три полоски > Группы > Плюсик > Названиие любое > URL вствляем ссылку</div>
-    <div class="instruction-step"><code>Streisand</code>: Плюсик > Добавить вручную > Тип Subscription > Название любое > URL вставляем ссылку > Автообновление 30 минут</div>
+    <div class="instruction-step"><code>Streisand</code>: Плюсик > Добавить вручную > Тип: Subscription > Название любое > URL вставляем ссылку > Автообновление 30 минут</div>
     <div class="instruction-step"><code>singbox-launcher</code>: Скачиваем Sing-box > Скачиваем wintun.dll > Скачиваем Config template > Жмём Wizard > в Subscription URL вставляем ссылку > Жмём Next > Жмём Next > Жмём Save > Жмём Start > Идём во вкладку Server > Выбираем любой сервер</div>
 
     <h3>4. Глоссарий и тонкая настройка:</h3>
@@ -228,21 +228,5 @@
         </div>
     </div>
 </div>
-
-<script>
-function copyLink(id, btn) {
-    const text = document.getElementById(id).innerText;
-    navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.innerText;
-        btn.innerText = 'Скопировано!';
-        btn.classList.add('success');
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.classList.remove('success');
-        }, 2000);
-    });
-}
-</script>
-
 </body>
 </html>
